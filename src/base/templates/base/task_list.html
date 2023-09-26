@@ -1,3 +1,7 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
+
 {% if request.user.is_authenticated %}
     <p>{{request.user}}</p>
     <a href="{% url 'logout' %}">Logout</a>
@@ -9,6 +13,11 @@
 <h1>Pendings List</h1>
 <a href="{% url 'create-task' %}">Create a new task</a>
 
+<form method="GET">
+    <input type="text" name="search-area" value="{{searched_value}}">
+    <input type="submit" value="Search">
+</form>
+
 <table>
     <tr>
         <th>Elements</th>
@@ -19,7 +28,6 @@
     {% for task in tasks%}
     <tr>
         <td>{{task.title}}</td>
-        <td><a href="{% url 'task' task.id %}">Watch</a></td>
         <td><a href="{% url 'edit-task' task.id %}">Edit</a></td>
         <td><a href="{% url 'delete-task' task.id %}">Delete</a></td>
     </tr>
@@ -29,3 +37,5 @@
 
     {% endfor %}
 </table>
+
+{% endblock content %}
