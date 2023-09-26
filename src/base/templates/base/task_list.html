@@ -10,7 +10,7 @@
     {% for task in tasks%}
     <tr>
         <td>{{task.title}}</td>
-        <td><a href="{% url 'tasks' task.id %}">Watch</a></td>
+        <td><a href="{% url 'task' task.id %}">Watch</a></td>
     </tr>
 
     {% empty %}
