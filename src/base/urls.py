@@ -1,7 +1,10 @@
 from django.urls import path
-from .views import PendingsList, TaskDetail, CreateTask, EditTask, DeleteTask
+from django.contrib.auth.views import LogoutView
+from .views import PendingsList, TaskDetail, CreateTask, EditTask, DeleteTask, Login
 
 urlpatterns = [path('', PendingsList.as_view(), name="tasks"),
+               path('login/', Login.as_view(), name="login"),
+               path('logout/', LogoutView.as_view(next_page='login'), name="logout"),
                path('tasks/<int:pk>', TaskDetail.as_view(), name="task"),
                path('create-task/', CreateTask.as_view(), name="create-task"),
                path('edit-task/<int:pk>', EditTask.as_view(), name="edit-task"),
