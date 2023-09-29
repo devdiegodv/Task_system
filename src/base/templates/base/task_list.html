@@ -14,30 +14,29 @@
         <a href="{% url 'login' %}">Login</a>
     {% endif %}
 </div>
+
+<div class="wrapper-add-search">
+    <form method="GET" style="margin-top: 20px; display: flex;">
+        <input type="text" name="search-area" value="{{searched_value}}">
+        <input class="button" type="submit" value="Search">
+    </form>
+    <a id="add-link" href="{% url 'create-task' %}">&#x2719;</a>
+</div>
 <hr>
 
-<a href="{% url 'create-task' %}">Create a new task</a>
-
-<form method="GET">
-    <input type="text" name="search-area" value="{{searched_value}}">
-    <input type="submit" value="Search">
-</form>
-
-<div class="wrapper-items-task"> #envoltorio items tarea
-    {% for task in tasks%}
-    <div class="wrapper-task"> #envoltorio tarea
+<div class="envoltorio-items-tarea">
+    {% for task in tasks %}
+    <div class="wrapper-task">
         {% if task.completed %}
-        <div class="task-title"> #titulo tarea
-            <div class="icon-completed-task"> #icono tarea completa
-                <i><s><a href="{% url 'edit-task' task.id %}">{{task}}</a></s></i>
-            </div>
+        <div class="task-title">
+            <div class="icon-completed-task"></div>
+            <i><s><a href="{% url 'edit-task' task.id %}">{{task}}</a></s></i>
         </div>
         <a class="delete-link" href="{% url 'delete-task' task.id %}">&#x2718;</a>
         {% else %}
-        <div class="task-title">#titulo tarea
-            <div class="icon-incompleted-task">#icono tarea incompleta
-                <a href="{% url 'edit-task' task.id %}">{{task}}</a>
-            </div>
+        <div class="task-title">
+            <div class="icon-incompleted-task"></div>
+            <a href="{% url 'edit-task' task.id %}">{{task}}</a>
         </div>
         <a class="delete-link" href="{% url 'delete-task' task.id %}">&#x2718;</a>
         {% endif %}
